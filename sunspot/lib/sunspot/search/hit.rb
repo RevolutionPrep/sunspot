@@ -22,6 +22,7 @@ module Sunspot
       # is not from a keyword search.
       #
       attr_reader :score
+      attr_reader :distance
       #
 
       attr_writer :result #:nodoc:
@@ -29,6 +30,7 @@ module Sunspot
       def initialize(raw_hit, highlights, search) #:nodoc:
         @class_name, @primary_key = *raw_hit['id'].match(/([^ ]+) (.+)/)[1..2]
         @score = raw_hit['score']
+        @distance = raw_hit['distance']
         @search = search
         @stored_values = raw_hit
         @stored_cache = {}
